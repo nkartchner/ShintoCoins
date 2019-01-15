@@ -6,60 +6,81 @@ import { Injectable } from '@angular/core';
 })
 export class ShintoService {
   constructor() { }
-  coinVal = 1;
-  totalCoins:number = 0;
-  transactions: any;
-  detailTrans:any;
-  
-  buyCoins(amount:number){
+  totalCoins: number = 0;
+  transactions = [];
+  singleTrans: any;
+  newTransaction = {
+    id: 0,
+    action: "", 
+    amount: 0, 
+    value:0
+  }
+  worth: number = this.totalCoins + 1;
+  id: number = 0;
+
+
+  buyCoins(amount: number) {
     this.totalCoins += amount;
-    console.log('incresed coins');
-    console.log(this.totalCoins);
+    this.increaseWorth(amount);
+    return this.totalCoins;
   }
 
-  sellCoins(amount:number){
+
+  sellCoins(amount: number) {
     this.totalCoins -= amount;
+    this.decreaseWorth(amount);
     return this.totalCoins;
   }
 
-  CoinValueInc(amount:number){
-    this.coinVal += amount;
-    return this.coinVal;
+  increaseWorth(amount: number) {
+    this.worth += amount;
+    return;
   }
 
-  CoinValueDec(amount:number){
-    this.coinVal -= amount;
-    return this.coinVal;
+  decreaseWorth(amount: number) {
+    this.worth -= amount;
+    return;
   }
 
-  getVal(){
-    return this.coinVal;
+  shintoWorth() {
+    return this.worth;
   }
 
-  getCurrentCoins(){
+  getYourTotalCoins() {
     return this.totalCoins;
   }
 
 
-  setTransaction(trans:any){
-    this.detailTrans = trans;
-    return this.detailTrans;
+  setSingleTransaction(trans: any) {
+    this.singleTrans = trans;
   }
 
-  allTrans(){
+  getSingleTrans(){
+    return this.singleTrans;
+  }
+
+  allTrans() {
     return this.transactions;
   }
 
-  addTrans(trans:any){
-    this.transactions.push(trans);
-    return this.transactions;
-  }
-
-    randomTrans(action:string, amount:number, value:number){
-      let newTrans = {Action: action, Amount: amount, Value: value};
-      console.log(newTrans);
-      return this.addTrans(newTrans);
+  newTrans(action:string, amount:number) {
+    this.newTransaction = {
+      id: ++this.id, 
+      action: action, 
+      amount: parseInt(amount), 
+      value:this.worth
     }
+
+    if (action === "Sold") {
+      this.sellCoins(amount);
+    } else {
+      this.buyCoins(amount);
+    }
+    console.log(this.newTransaction);
+    this.transactions.push(this.newTransaction);
+    console.log(this.transactions);
+    return this.totalCoins;
+  }
 
 
 }

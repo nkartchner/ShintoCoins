@@ -7,29 +7,26 @@ import { ShintoService } from '../shinto.service';
   styleUrls: ['./buy.component.css']
 })
 export class BuyComponent implements OnInit {
-  currentVal: number;
-  coinOwned: number;
-  userInput: number;
+  currentWorth: number;
+  coins: number;
+  amount: number;
   constructor(private _shinto: ShintoService) { }
 
   ngOnInit() {
-    this.getCoinVal();
-    this.getCoinBalance();
+    this.getShinto();
   }
-  getCoinVal(){
-    this.currentVal = this._shinto.getVal();
+
+  getShinto() {
+    this.currentWorth = this._shinto.shintoWorth();
+    this.coins = this._shinto.getYourTotalCoins();
   }
-  getCoinBalance(){
-    this.coinOwned = this._shinto.getCurrentCoins();
-    return this.coinOwned;
-  }
-  buyCoin(){
-    let currentVal = this._shinto.getVal();
-    this._shinto.CoinValueInc(this.userInput);
-    this._shinto.buyCoins(this.userInput);
-    this._shinto.randomTrans('Buy',this.userInput,currentVal);
-    this.coinOwned = this._shinto.getCurrentCoins();
-    this.currentVal = this._shinto.getVal();
-    console.log('how much I have: ',this.coinOwned);
+
+  buyCoin() {
+    console.log('this.amount');
+    
+    console.log(this.amount)
+    this._shinto.newTrans('Bought', this.amount);
+    this.getShinto();
+    console.log(this.coins);
   }
 }

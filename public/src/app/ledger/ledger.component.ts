@@ -6,13 +6,17 @@ import {ShintoService} from '../shinto.service';
   styleUrls: ['./ledger.component.css']
 })
 export class LedgerComponent implements OnInit {
-  allTrans:any;
-  constructor(private _service : ShintoService) { }
+  transactions:any;
+  constructor(private _shinto : ShintoService) { }
 
   ngOnInit() {
-    this.allTrans = this._service.allTrans().subscribe(data => {console.log(data); this.allTrans = data;});
-    console.log(this.allTrans);
+    this.transactions = this._shinto.allTrans();
+  }
+
+  setSingle(trans:any){
+    console.log('click function worked');
     
+    this._shinto.setSingleTransaction(trans);
   }
 
 }

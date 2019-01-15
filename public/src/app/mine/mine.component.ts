@@ -8,19 +8,17 @@ import { ShintoService } from '../shinto.service';
 })
 export class MineComponent implements OnInit {
   Answer : number = 100
-  userInput : number;
-  transcaction = { id : 0, type:"Mine", value: 0 , amount : 1 }
+  value:number;
   constructor(private _shinto: ShintoService) { }
 
   ngOnInit() {
   }
-  getAnswer(){
-    if(this.userInput == this.Answer){
-      this.userInput = 0;
-      let currentVal = this._shinto.getVal();
-      this._shinto.CoinValueInc(1);
-      this._shinto.buyCoins(1);
-      this._shinto.randomTrans('Mined',1,currentVal);
+
+  getAnswer(value:any){
+    if(this.value == this.Answer){
+      console.log('answer is correct');
+      
+      this._shinto.newTrans('Mined',1);
     }else{
       console.log('answer is wrong');
     }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ShintoService } from '../shinto.service';
 
 @Component({
   selector: 'app-sell',
@@ -6,35 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sell.component.css']
 })
 export class SellComponent implements OnInit {
-
-  currentVal: number;
-  coinOwned: number;
-  userInput: number;
-  constructor(private _httpService: HttpService) { }
+  currentWorth: number;
+  coins: number;
+  amount:number  
+  constructor(private _shinto: ShintoService) { }
 
   ngOnInit() {
-    this.getCoinVal();
-    this.getCoinBalance();
+    this.currentWorth = this._shinto.shintoWorth();
+    this.coins = this._shinto.getYourTotalCoins();
   }
-  getCoinVal(){
-    this.currentVal = this._httpService.getCurrentValue();
-  }
-  getCoinBalance(){
-    this.coinOwned = this._httpService.getBalance();
-    return this.coinOwned;
-  }
-  sellCoin(){
-    let currentVal = this._httpService.getCurrentValue();
-    let currentCoin= this.getCoinBalance();
-    if(this.userInput <= currentCoin ){
-    this._httpService.decreaseShintoCoinValue(this.userInput);
-    this._httpService.RemoveCoin(this.userInput);
-    this._httpService.generateTran('Sold',this.userInput,currentVal);
-    this.coinOwned = this._httpService.getBalance();
-    this.currentVal = this._httpService.getCurrentValue();
-    console.log('how much I have: ',this.coinOwned);
+
+  sellCoins(){
+    if(this.amount <= this.coins ){
+    this._shinto.newTrans('Sold',this.amount);
+    this.currentWorth = this._shinto.shintoWorth();
+    console.log(this.coins);
     }else{
-      console.log("not enough coin to sell");
+      console.log("Insufficient funds");
     }
   }
 }

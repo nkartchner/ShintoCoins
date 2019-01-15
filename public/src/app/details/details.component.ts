@@ -8,20 +8,19 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
-  findTransaction: any;
-  constructor(private _route: ActivatedRoute,
+  singleTrans:any;  
+  constructor(
+    private _route: ActivatedRoute,
     private _shinto: ShintoService
   ) { }
 
-ngOnInit() {
-  this.Details();
+  ngOnInit() {
+  //   console.log(this._route.params);
+  //   this._route.params.subscribe((params: Params) => {
+    //     console.log(params['id']);
+    
+    // });
+  this.singleTrans = this._shinto.getSingleTrans();
 }
-Details(){
-  this._route.params.subscribe((params: Params) => {
-    let myID = params['id'];
-    console.log("show params id ",myID);
-    this.findTransaction = this._shinto.detailTrans(myID);
-    console.log('show find detail', this.findTransaction);
-});
-}
+
 }

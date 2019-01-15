@@ -9,28 +9,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>Mined</td>
-      <td>1</td>
-      <td>2</td>
+    <tr *ngFor="let trans of transactions; i as index">
+      <td>{{ trans.action }}</td>
+      <td>{{ trans.amount }}</td>
+      <td>{{ trans.value }}</td>
       <td>
-        <button type="button" class="btn btn-secondary btn-sm" [routerLink]="['details']">Details</button>
-      </td>
-    </tr>
-    <tr>
-      <td>Mined</td>
-      <td>1</td>
-      <td>2</td>
-      <td>
-        <button type="button" class="btn btn-secondary btn-sm" [routerLink]="['details']">Details</button>
-      </td>
-    </tr>
-    <tr>
-      <td>Sold</td>
-      <td>1</td>
-      <td>3</td>
-      <td>
-        <button type="button" class="btn btn-secondary btn-sm" [routerLink]="['details']">Details</button>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="setSingle(trans)" [routerLink]="['/details']">Details</button>
       </td>
     </tr>
   </tbody>

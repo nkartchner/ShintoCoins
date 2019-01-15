@@ -1,9 +1,9 @@
 <h1 class="headerH1">Buy ShinotoCoins</h1>
 <p>
-  Current ShinotoCoin Value: INSERT VAR HERE<br>
-  Number of ShinotoCoins Owned: 0
+  Current ShinotoCoin Value: {{ currentWorth }}<br>
+  Number of ShinotoCoins Owned: {{ coins }}
 </p>
-<form>
-    <input type="text" class="form-control" placeholder="number">
-    <button type="submit" class="btn headerBtns btn-sm btn-secondary">Mine</button> 
+<form >
+    <input type="text" [(ngModel)]="amount" name="amount" class="form-control" placeholder="number">
+    <button type="button" (click)="buyCoin(amount)" class="btn headerBtns btn-sm btn-secondary">Buy</button> 
   </form>

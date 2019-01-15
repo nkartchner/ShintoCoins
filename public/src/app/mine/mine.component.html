@@ -2,7 +2,7 @@
 <p>
   Here you can mine ShinotoCoins by being the first to solve the alogrithm:
 </p>
-<form>
-  <input type="text" class="form-control" placeholder="number">
-  <button type="submit" class="btn headerBtns btn-sm btn-secondary">Mine</button> 
+<form >
+  <input type="text" [(ngModel)]="value" name="value" class="form-control" placeholder="number">
+  <button type="button" (click)="getAnswer(value)" class="btn headerBtns btn-sm btn-secondary">Mine</button> 
 </form>

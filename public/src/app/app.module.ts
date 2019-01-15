@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { AceEditorModule } from 'ng2-ace-editor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -22,13 +22,14 @@ import { HttpClientModule } from '@angular/common/http'
     BuyComponent,
     SellComponent,
     LedgerComponent,
-    DetailsComponent
+    DetailsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AceEditorModule
   ],
   providers: [ShintoService],
   bootstrap: [AppComponent]
