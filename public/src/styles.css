@@ -1,0 +1,83 @@
+/* You can add global styles to this file, and also import other style files */
+app-root{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 100px 300px;
+    grid-template-areas: 'header header' 'result result';
+    min-height: 400px;
+    width: 970px;
+    margin: 0px auto;
+    align-content: space-between;
+}
+
+header{
+    grid-area: header;
+    display:grid;
+    grid-template-columns:193px 150px 150px 150px 150px 150px;
+    grid-template-rows:100px;
+    grid-template-areas:'img home mine buy sell browse';
+    grid-gap:5px;
+}
+
+.headerH1{
+    grid-area: 2 / 1 / 3 / 2; 
+    text-align: center; 
+    align-self: center;
+}
+
+.headerBtns {
+    width: 140px;
+    height: 30px;
+    align-self: center;
+    justify-self: center;
+}
+
+.homeBtn {
+    grid-area: home;
+}
+
+.minBtn {
+    grid-area: mine;
+}
+
+.buyBtn {
+    grid-area: buy;
+}
+
+.sellBtn {
+    grid-area: sell;
+}
+
+.ledgerBtn {
+    grid-area: browse;
+}
+
+app-sell, 
+app-mine, 
+app-ledger, 
+app-buy, 
+app-home,
+app-details {
+    grid-area: result;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 10px 50px 190px;
+    grid-template-areas: 'dead dead' 'phead dead' 'theRest theRest';
+}
+
+.ledger {
+    grid-area:3 / 1 / 4 / 2;
+    text-align: center;
+}
+
+p, span{
+    grid-column:1 / 3;
+    grid-row:3;
+}
+
+form{
+    grid-row:3;
+    grid-column:1;
+    align-self:center;
+    justify-self: center;
+}
